@@ -1,6 +1,35 @@
-# P3_maze
+<h1 align="center">
+  <br>
 
-One Paragraph of project description goes here
+  <br>
+  Project 3 - McGyver
+  <br>
+</h1>
+
+<h4 align="center">A simple game made with Python as part as an <a href="https://openclassrooms.com/en" target="_blank">OpenClassrooms</a> project.</h4>
+
+
+<p align="center">
+  <a href="">
+    <img src="https://img.shields.io/badge/Python-3.7-green.svg">
+  </a>
+  <a href="https://opensource.org/licenses/MIT">
+    <img src="https://img.shields.io/badge/license-MIT-blue.svg">
+  </a>
+</p>
+
+# P3_maze
+<p align="center">
+  <a href="#key-features">Key Features</a> •
+  <a href="#how-to-use">How To Use</a> •
+  <a href="#download">Download</a> •
+  <a href="#credits">Credits</a> •
+  <a href="#related">Related</a> •
+  <a href="#license">License</a>
+</p>
+
+This is a game made in Python as part of a futur diploma as a programer from the [OpenClassrooms](https://openclassrooms.com/en) company. I put it here for evaluation.
+
 
 ## Getting Started
 
@@ -8,8 +37,7 @@ These instructions will get you a copy of the project up and running on your loc
 
 ### Prerequisites
 
-What things you need to install the software and how to install them
-
+This uses 
 ```
 Give examples
 ```

@@ -1,0 +1,4 @@
+CHAR_WALL = "#"
+CHAR_PATH = "0"
+CHAR_PLAYER = "S"
+CHAR_FINISH = "F"

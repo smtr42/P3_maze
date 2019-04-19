@@ -17,7 +17,10 @@ class Level:
         self.finish = []
 
     def load_txt(self):
-        """Load the data from the textfile
+        """Load the data from the textfile and append
+        each paths, player and finish position's coordinate into a list.
+        Each line ha coordinate "x"
+        Each column has coordinate "y"
 
         Args :
             filename (str): giving textfile path

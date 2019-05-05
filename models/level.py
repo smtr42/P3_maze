@@ -3,7 +3,6 @@ in order to create and manage the maze
 """
 import settings
 
-
 class Level:
     """This class will manage everything about the maze itself"""
 
@@ -12,9 +11,15 @@ class Level:
 
         """
         self.filename = filename
-        self.paths = []
-        self.player = []
-        self.finish = []
+
+        self._paths = []
+        self._player = []
+        self._finish = []
+
+        self.load_txt()
+
+    def __contains__(self, position):
+        return position in self._paths
 
     def load_txt(self):
         """Load the data from the textfile and append
@@ -29,15 +34,27 @@ class Level:
             for x, line in enumerate(textfile):
                 for y, col in enumerate(line):
                     if col == settings.CHAR_PATH:
-                        self.paths.append((x, y))
+                        self._paths.append((x, y))
                     if col == settings.CHAR_FINISH:
-                        self.paths.append((x, y))
-                        self.finish.append((x, y))
+                        self._paths.append((x, y))
+                        self._finish.append((x, y))
                     if col == settings.CHAR_PLAYER:
-                        self.player.append((x, y))
-                        self.paths.append((x, y))
+                        self._player.append((x, y))
+                        self._paths.append((x, y))
+
+    def __repr__(self):
+        return f"Paths : {self._paths}\nPlayer : {self._player}\nFinish : {self._finish}"
+
+    @property
+    def player_position(self):
+        return list(self._player)[0]
+
+    @property
+    def path_possibles(self):
+        return list(self._paths)
+
+    def set_player_position(self, x):
+        self._player = x
 
 
-level = Level("map.txt")
 
-level.load_txt()

@@ -1,16 +1,17 @@
-from position import Position
-from level import Level
+from .position import Position
+
 
 class Player:
 
-    def __init__(self):
-        self.position = Level
-        self.total_item = []
+    def __init__(self, level):
+        self.level = level
+        self.position = self.level.player_position
 
     def move(self, direction):
-        # modify current coordinate according
-        # to the direction and what position return
-        print(getattr(Position, "up"))
+        x, y = self.position
+        new_position = getattr(Position(x, y), direction)()
+        if new_position in self.level:
+            self.position = tuple(new_position)
 
     # def pick_up_item(self):
     #     # if item position == player position
@@ -18,6 +19,4 @@ class Player:
     #     # delete
     #     pass
 
-
-plm = Player()
-plm.move("up")
+# plm.move("up")

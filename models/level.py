@@ -1,21 +1,26 @@
 """This module level will contain the Level class
-in order to create and manage the maze
+in order to create and manage the maze.
 """
 import settings
 
+
 class Level:
-    """This class will manage everything about the maze itself"""
+    """This class will manage everything about the maze itself."""
 
     def __init__(self, filename):
         """ Args:
-
+                filename (str): the path needed to load the file.
+            Attributes:
+                filename (str):the path needed to load the file.
+                _paths (list): list of set for each place possible the
+                        player can move on freely.
+                _player (list): initial coordinate of the player.
+                _finish (list): the coordinate where the player win the game
         """
         self.filename = filename
-
         self._paths = []
         self._player = []
         self._finish = []
-
         self.load_txt()
 
     def __contains__(self, position):
@@ -24,11 +29,8 @@ class Level:
     def load_txt(self):
         """Load the data from the textfile and append
         each paths, player and finish position's coordinate into a list.
-        Each line ha coordinate "x"
+        Each line has coordinate "x"
         Each column has coordinate "y"
-
-        Args :
-            filename (str): giving textfile path
         """
         with open(self.filename, "r") as textfile:
             for x, line in enumerate(textfile):
@@ -55,6 +57,3 @@ class Level:
 
     def set_player_position(self, x):
         self._player = x
-
-
-

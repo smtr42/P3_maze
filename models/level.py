@@ -21,6 +21,7 @@ class Level:
         self._paths = []
         self._player = []
         self._finish = []
+        self._items = []
         self.load_txt()
 
     def __contains__(self, position):
@@ -49,11 +50,22 @@ class Level:
 
     @property
     def player_position(self):
-        return list(self._player)[0]
+        return self._player[0]
 
     @property
     def path_possibles(self):
         return list(self._paths)
 
+    @property
+    def get_finish_position(self):
+        return list(self._finish)
+
+    @property
+    def get_item_position(self):
+        return list(self._items)
+
     def set_player_position(self, x):
-        self._player = x
+        self._player[0] = x
+
+    def set_items_position(self, x):
+        self._items = x

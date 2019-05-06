@@ -1,5 +1,16 @@
+import random
+
+
 class Item:
 
-    def __init__(self, position):
-        pass
+    def __init__(self, level):
+        self.level = level
+        self.path_possibles = self.level.path_possibles
+        self.items_coordinate = []
+        print("Item_slot", self.path_possibles)
+        self.place_item()
 
+    def place_item(self):
+        self.items_coordinate = [random.choice(self.path_possibles)
+                                 for i in range(3)]
+        self.level.set_items_position(self.items_coordinate)

@@ -9,9 +9,11 @@ class Player:
         Attributes:
             level (obj): an instance of the Level class.
             position (tuple): the coordinate of the player."""
+
     def __init__(self, level):
         self.level = level
         self.position = self.level.player_position
+        self.item_position = []
 
     def move(self, direction):
         """Action to modify the coordinate of the player according
@@ -23,12 +25,14 @@ class Player:
         new_position = getattr(Position(x, y), direction)()
         if new_position in self.level:
             self.position = tuple(new_position)
+            self.level.set_player_position(self.position)
             print("New player position is :", self.position)
 
-    # def pick_up_item(self):
-    #     # if item position == player position
-    #     # then add item to item_count
-    #     # delete
-    #     pass
+    def pickup_item(self):
+        self.item_position = self.level.get_item_position
+        if self.position in self.item_position:
+            self.item_position.remove(self.position)
+            self.level.set_items_position(self.item_position)
 
-# plm.move("up")
+    def item_count(self):
+        return 3 - len(self.item_position)

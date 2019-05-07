@@ -11,6 +11,5 @@ class Item:
         self.place_item()
 
     def place_item(self):
-        self.items_coordinate = [random.choice(self.path_possibles)
-                                 for i in range(3)]
+        self.items_coordinate = random.sample(self.path_possibles, 3)
         self.level.set_items_position(self.items_coordinate)

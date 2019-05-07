@@ -58,7 +58,7 @@ class Level:
 
     @property
     def get_finish_position(self):
-        return list(self._finish)
+        return self._finish[0]
 
     @property
     def get_item_position(self):
@@ -69,3 +69,4 @@ class Level:
 
     def set_items_position(self, x):
         self._items = x
+

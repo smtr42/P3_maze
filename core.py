@@ -1,4 +1,6 @@
 """Here the main game runs"""
+import settings
+import pygame
 
 from models.level import Level
 from models.position import Position
@@ -8,8 +10,6 @@ from models.item import Item
 from controllers.keyboard import KeyboardInputs
 from views.update import Update
 from settings import Settings
-
-import pygame
 
 
 def run_game():
@@ -34,12 +34,13 @@ def run_game():
     #
     chk_event = KeyboardInputs(player)
     updater = Update(settings)
+    game_state = settings.running_game
 
-    while True:
+    while game_state:
         chk_event.check_events()
         player.pickup_item()
+        player.check_victory_condition()
         updater.update_screen()
 
-
-if __name__ == "__main__":
-    run_game()
+        if __name__ == "__main__":
+            run_game()

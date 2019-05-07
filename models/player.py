@@ -1,4 +1,6 @@
 """This class will take care of the player functions"""
+import settings
+import exceptions
 from .position import Position
 
 
@@ -13,6 +15,7 @@ class Player:
     def __init__(self, level):
         self.level = level
         self.position = self.level.player_position
+        self.gk_position = self.level.get_finish_position
         self.item_position = []
 
     def move(self, direction):
@@ -34,5 +37,17 @@ class Player:
             self.item_position.remove(self.position)
             self.level.set_items_position(self.item_position)
 
+    @property
     def item_count(self):
-        return 3 - len(self.item_position)
+        return settings.ITEMS_CREATED - len(self.item_position)
+
+    def check_victory_condition(self):
+        try:
+            if self.position == self.gk_position and self.item_count == settings.ITEMS_CREATED:
+                raise exceptions.GameWinException
+            elif self.position == self.gk_position and self.item_count != settings.ITEMS_CREATED:
+                raise exceptions.GameOverException
+        except GameWinException:
+            pass
+        except GameOverException:
+            pass

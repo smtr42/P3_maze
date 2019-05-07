@@ -2,7 +2,9 @@ CHAR_WALL = "#"
 CHAR_PATH = "0"
 CHAR_PLAYER = "S"
 CHAR_FINISH = "F"
+ITEMS_CREATED = 3
 
+running_game = True
 
 class Settings:
     def __init__(self):

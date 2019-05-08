@@ -1,6 +1,6 @@
 """This class will take care of the player functions"""
-import settings
-import exceptions
+import settings as st
+import custom_exceptions as cexcept
 from .position import Position
 
 
@@ -12,10 +12,11 @@ class Player:
             level (obj): an instance of the Level class.
             position (tuple): the coordinate of the player."""
 
-    def __init__(self, level):
+    def __init__(self, level, settings):
+        self.settings = settings
         self.level = level
         self.position = self.level.player_position
-        self.gk_position = self.level.get_finish_position
+        self.gatekeeper_position = self.level.get_finish_position
         self.item_position = []
 
     def move(self, direction):
@@ -39,15 +40,18 @@ class Player:
 
     @property
     def item_count(self):
-        return settings.ITEMS_CREATED - len(self.item_position)
+        return self.settings.item_created - len(self.item_position)
 
     def check_victory_condition(self):
         try:
-            if self.position == self.gk_position and self.item_count == settings.ITEMS_CREATED:
-                raise exceptions.GameWinException
-            elif self.position == self.gk_position and self.item_count != settings.ITEMS_CREATED:
-                raise exceptions.GameOverException
-        except GameWinException:
-            pass
-        except GameOverException:
-            pass
+            if self.position == self.gatekeeper_position and self.item_count == self.settings.item_created:
+                raise cexcept.GameWinException
+            elif self.position == self.gatekeeper_position and self.item_count != self.settings.item_created:
+                print("conditions de defaite remplie")
+                raise cexcept.GameOverException
+        except cexcept.GameWinException:
+            print("You win, the guard fell asleep. And you could escape.")
+            return False
+        except cexcept.GameOverException:
+            print("you failed to stun the guard. You lack some items to do so.")
+            return False

@@ -1,6 +1,6 @@
 """Here the main game runs"""
-import settings
 import pygame
+import settings
 
 from models.level import Level
 from models.position import Position
@@ -14,7 +14,7 @@ from settings import Settings
 
 def run_game():
     pygame.init()
-    settings = Settings()
+    mcsettings = Settings()
 
     pygame.display.set_caption("McGyver")
 
@@ -26,21 +26,25 @@ def run_game():
     position = Position(1, 1)
 
     # Create player and guard
-    player = Player(level)
+    player = Player(level, mcsettings)
     gatekeeper = GateKeeper(level)
 
     print("Player initial position =", player.position)
 
     #
     chk_event = KeyboardInputs(player)
-    updater = Update(settings)
-    game_state = settings.running_game
+    updater = Update(mcsettings)
 
-    while game_state:
+    running_state = True
+    while running_state:
         chk_event.check_events()
         player.pickup_item()
-        player.check_victory_condition()
         updater.update_screen()
+        if player.check_victory_condition() == False:
+            break
+        else:
+            continue
 
-        if __name__ == "__main__":
-            run_game()
+
+if __name__ == "__main__":
+    run_game()

@@ -70,3 +70,6 @@ class Level:
     def set_items_position(self, x):
         self._items = x
 
+    @property
+    def gatekeeper_position(self):
+        return self._finish[0]

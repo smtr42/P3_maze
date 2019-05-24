@@ -30,16 +30,17 @@ def run_game():
     updater = Update(mcsettings, level)
     updater.update_screen()
 
-    running_state = True
+self    running_state = True
     while running_state:
         chk_event.check_events()
         player.pickup_item()
-
         updater.update_player()
+        updater.update_gatekeeper()
         if player.check_victory_condition() == False:
             break
         else:
             continue
+
 
 if __name__ == "__main__":
     run_game()

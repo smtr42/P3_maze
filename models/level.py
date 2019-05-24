@@ -22,6 +22,7 @@ class Level:
         self._player = []
         self._finish = []
         self._items = []
+        self._wall = []
         self.load_txt()
 
     def __contains__(self, position):
@@ -44,6 +45,8 @@ class Level:
                     if col == settings.CHAR_PLAYER:
                         self._player.append((x, y))
                         self._paths.append((x, y))
+                    if col == settings.CHAR_WALL:
+                        self._wall.append((x, y))
 
     def __repr__(self):
         return f"Paths : {self._paths}\nPlayer : {self._player}\nFinish : {self._finish}"
@@ -73,3 +76,7 @@ class Level:
     @property
     def gatekeeper_position(self):
         return self._finish[0]
+
+    @property
+    def get_wall_positions(self):
+        return list(self._wall)

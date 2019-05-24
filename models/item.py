@@ -7,7 +7,7 @@ class Item:
         self.level = level
         self.path_possibles = self.level.path_possibles
         self.items_coordinate = []
-        print("Item_slot", self.path_possibles)
+        # print("Item_slot", self.path_possibles)
         self.place_item()
 
     def place_item(self):

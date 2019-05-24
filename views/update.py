@@ -8,6 +8,8 @@ class Update:
         self.level = level
         self.player_pos = self.level.player_position
         self.gk_pos = self.level.gatekeeper_position
+        self.wall_pos = self.level.get_wall_positions
+        print(self.wall_pos)
         self.settings = settings
 
         # SELF SCREEN
@@ -17,12 +19,19 @@ class Update:
         self.data_dir = os.path.join(self.main_dir, 'data')
 
         # LOAD IMAGES
-        self.bg_image, self.bg_rect = Update.load_image(self, 'structures.png')
+        self.bg_image, self.bg_rect = Update.load_image(self, 'background.jpg')
         self.player_image, self.player_rect = Update.load_image(self, 'MacGyver.png')
         self.gk_image, self.gk_rect = Update.load_image(self, 'gatekeeper.png')
+        self.wall_image, self.wall_rect = Update.load_image(self, 'wall.jpg')
 
     def update_screen(self):
         self.screen.blit(self.bg_image, self.bg_rect)
+
+        for position in self.wall_pos:
+            wall_y_pos, wall_x_pos = position
+            print(position)
+            self.screen.blit(self.wall_image, (wall_x_pos * self.settings.size_sprite, wall_y_pos* self.settings.size_sprite))
+
 
     def update_player(self):
         if self.player_pos != self.level.player_position:
@@ -40,7 +49,7 @@ class Update:
 
     def update_gatekeeper(self):
         gk_y_pos, gk_x_pos = self.gk_pos
-        self.screen.blit(self.player_image,
+        self.screen.blit(self.gk_image,
                          (gk_x_pos * self.settings.size_sprite, gk_y_pos * self.settings.size_sprite))
         pygame.display.update()
 

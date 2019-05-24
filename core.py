@@ -30,7 +30,7 @@ def run_game():
     updater = Update(mcsettings, level)
     updater.update_screen()
 
-self    running_state = True
+    running_state = True
     while running_state:
         chk_event.check_events()
         player.pickup_item()

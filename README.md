@@ -30,6 +30,10 @@
 
 This is a game made in Python as part of a futur diploma as a Python developer from the [OpenClassrooms](https://openclassrooms.com/en) company. I put it here for evaluation.
 
+I tried to :
+* Use the MVC Convention
+* Follow the pep8 recommendation
+* Use OOP
 
 ## Getting Started
 
@@ -41,41 +45,17 @@ You can modify the map.txt, and make your own maze by editing it. This type of f
 
 This uses 
 ```
-Give examples
+pygame==1.9.4
 ```
-
-### Installing
-
-A step by step series of examples that tell you how to get a development env running
-
-Say what the step will be
-
-```
-Give the example
-```
-
-And repeat
-
-```
-until finished
-```
-
-End with an example of getting some data out of the system or using it for a little demo
 
 ## Built With
 
 * [Python](https://www.python.org/) - The language used
 * [PyGame](https://www.pygame.org) - Dependency
 
-## Contributing
-
-As it is a personnal school project, no contributions will be accepted.
-
 ## Authors
 
-* **Billie Thompson** - *Initial work* - [smtr42](https://github.com/smtr42)
-
-See also the list of [contributors](https://github.com/your/project/contributors) who participated in this project.
+* **Simonnet T** - *Initial work* - [smtr42](https://github.com/smtr42)
 
 ## License
 

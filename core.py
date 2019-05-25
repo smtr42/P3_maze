@@ -1,10 +1,5 @@
 """Here the main game runs"""
 import pygame
-from pygame.locals import *
-import os
-import settings
-import time
-
 from models.level import Level
 from models.position import Position
 from models.player import Player
@@ -16,19 +11,24 @@ from settings import Settings
 
 
 def run_game():
+    """
+    The main function.
+    Here we intanciate every class.
+    Then runs the loop for the game to runs.
+    """
+    # Pygame initialization.
     pygame.init()
     pygame.display.set_caption("McGyver")
 
+    # Instanciation.
     mcsettings = Settings()
     level = Level("models/map.txt")
     item = Item(level)
     position = Position(1, 1)
     player = Player(level, mcsettings)
-    gatekeeper = GateKeeper(level)
-
-    print("Player initial position =", player.position)
     chk_event = KeyboardInputs(player)
     updater = Update(mcsettings, level, player)
+
     updater.update_screen()
 
     running_state = True

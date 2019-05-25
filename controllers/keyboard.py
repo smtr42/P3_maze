@@ -6,12 +6,14 @@ import pygame
 
 
 class KeyboardInputs:
-
+    """
+    Check the events with pygame
+    """
     def __init__(self, player):
         self.player = player
 
     def check_events(self):
-        """Respond to key presses and mouse events."""
+        """Respond to key presses."""
         for event in pygame.event.get():
             if event.type == pygame.QUIT:
                 sys.exit()

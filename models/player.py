@@ -15,6 +15,7 @@ class Player:
     def __init__(self, level, settings):
         self.settings = settings
         self.level = level
+        self.item_obj_position = self.level.get_item_obj_position
         self.position = self.level.player_position
         self.gatekeeper_position = self.level.get_finish_position
         self.item_position = []
@@ -33,10 +34,17 @@ class Player:
             print("New player position is :", self.position)
 
     def pickup_item(self):
-        self.item_position = self.level.get_item_position
-        if self.position in self.item_position:
-            self.item_position.remove(self.position)
-            self.level.set_items_position(self.item_position)
+        # self.item_position = self.level.get_item_position
+        # if self.position in self.item_position:
+        #     self.item_position.remove(self.position)
+        #     self.level.set_items_position(self.item_position)
+        for item in self.item_obj_position.keys():
+            if self.item_obj_position.get(item) == self.position:
+                del self.item_obj_position[item]
+                print(self.item_obj_position)
+                break
+
+
 
     @property
     def item_count(self):

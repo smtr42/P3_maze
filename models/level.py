@@ -23,6 +23,7 @@ class Level:
         self._finish = []
         self._items = []
         self._wall = []
+        self._item_obj_position = {}
         self.load_txt()
 
     def __contains__(self, position):
@@ -80,3 +81,10 @@ class Level:
     @property
     def get_wall_positions(self):
         return list(self._wall)
+
+    @property
+    def get_item_obj_position(self):
+        return self._item_obj_position
+
+    def set_item_obj_position(self, x):
+        self._item_obj_position = x

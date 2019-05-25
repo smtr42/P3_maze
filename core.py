@@ -36,6 +36,7 @@ def run_game():
         player.pickup_item()
         updater.update_player()
         updater.update_gatekeeper()
+        updater.update_item()
         if player.check_victory_condition() == False:
             break
         else:

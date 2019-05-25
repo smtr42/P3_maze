@@ -3,6 +3,7 @@ import pygame
 from pygame.locals import *
 import os
 import settings
+import time
 
 from models.level import Level
 from models.position import Position
@@ -27,7 +28,7 @@ def run_game():
 
     print("Player initial position =", player.position)
     chk_event = KeyboardInputs(player)
-    updater = Update(mcsettings, level)
+    updater = Update(mcsettings, level, player)
     updater.update_screen()
 
     running_state = True
@@ -37,10 +38,12 @@ def run_game():
         updater.update_player()
         updater.update_gatekeeper()
         updater.update_item()
-        if player.check_victory_condition() == False:
-            break
-        else:
+        player.check_victory_condition()
+        if updater.ending_display():
             continue
+        else:
+            while True:
+                chk_event.check_events()
 
 
 if __name__ == "__main__":

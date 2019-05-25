@@ -3,8 +3,6 @@ to the appropriate object"""
 
 import sys
 import pygame
-# from models.player import Player
-import settings
 
 
 class KeyboardInputs:
@@ -26,3 +24,5 @@ class KeyboardInputs:
                     self.player.move("up")
                 if event.key == pygame.K_DOWN:
                     self.player.move("down")
+                if event.key == pygame.K_ESCAPE:
+                    sys.exit()

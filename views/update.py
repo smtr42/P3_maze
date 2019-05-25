@@ -2,10 +2,10 @@ import pygame
 from pygame.locals import *
 import os, sys
 
-
 class Update:
-    def __init__(self, settings, level):
+    def __init__(self, settings, level, player):
         self.level = level
+        self.player = player
         # RETRIEVE POSITIONS
         self.player_pos = self.level.player_position
         self.gk_pos = self.level.gatekeeper_position
@@ -14,8 +14,8 @@ class Update:
         self.settings = settings
 
         # SCREEN
-        self.screen = pygame.display.set_mode((self.settings.level_size, self.settings.level_size))
-
+        self.screen = pygame.display.set_mode(
+            (self.settings.level_size, self.settings.level_size + self.settings.size_sprite))
         self.main_dir = os.path.split(os.path.abspath(__file__))[0]
         self.data_dir = os.path.join(self.main_dir, 'data')
 
@@ -27,10 +27,15 @@ class Update:
         self.aiguille_image, self.aiguille_rect = Update.load_image(self, 'aiguille.png')
         self.seringue_image, self.seringue_rect = Update.load_image(self, 'seringue.png')
         self.ether_image, self.ether_rect = Update.load_image(self, 'ether.png')
+        self.bbar_image, self.bbar_rect = Update.load_image(self, 'bottombar.png')
+        self.victory_image, self.victory_rect = Update.load_image(self, 'victory.png')
+        self.fail_image, self.fail_rect = Update.load_image(self, 'fail.png')
+
+        self.picked_position = [(128, 480), (160, 480), (192, 480)]
 
     def update_screen(self):
         self.screen.blit(self.bg_image, self.bg_rect)
-
+        self.screen.blit(self.bbar_image, (0, self.settings.level_size))
         for position in self.wall_pos:
             wall_y_pos, wall_x_pos = position
             wall_y_pos = wall_y_pos * self.settings.size_sprite
@@ -58,25 +63,30 @@ class Update:
         pygame.display.update()
 
     def update_item(self):
-        for item in self.item_obj_position.keys():
-            if item == "aiguille":
-                Update.update_aiguille(self)
-            elif item == "ether":
-                Update.update_ether(self)
-            elif item == "seringue":
-                Update.update_seringue(self)
+        item_list = list(self.item_obj_position.keys())
+        if "aiguille" in item_list:
+            a_position = Update.position_corrector(self, "aiguille")
+            Update.display_item(self, a_position, self.aiguille_image, False)
+        elif "aiguille" not in item_list:
+            Update.display_item(self, self.picked_position[0], self.aiguille_image, True)
 
-    def update_aiguille(self):
-        position = Update.position_corrector(self, "aiguille")
-        self.screen.blit(self.aiguille_image, position)
+        if "ether" in item_list:
+            a_position = Update.position_corrector(self, "ether")
+            Update.display_item(self, a_position, self.ether_image, False)
+        elif "ether" not in item_list:
+            Update.display_item(self, self.picked_position[1], self.ether_image, True)
 
-    def update_ether(self):
-        position = Update.position_corrector(self, "ether")
-        self.screen.blit(self.ether_image, position)
+        if "seringue" in item_list:
+            a_position = Update.position_corrector(self, "seringue")
+            Update.display_item(self, a_position, self.seringue_image, False)
+        elif "seringue" not in item_list:
+            Update.display_item(self, self.picked_position[2], self.seringue_image, True)
 
-    def update_seringue(self):
-        position = Update.position_corrector(self, "seringue")
-        self.screen.blit(self.seringue_image, position)
+    def display_item(self, position, item_name=None, picked=False):
+        if not picked:
+            self.screen.blit(item_name, position)
+        else:
+            self.screen.blit(item_name, position)
 
     def position_corrector(self, item):
         position = self.item_obj_position[item]
@@ -85,8 +95,14 @@ class Update:
         position_x = position_x * self.settings.size_sprite
         return (position_x, position_y)
 
-    def victory_show(self):
-        pass
-
-    def fail_show(self):
-        pass
+    def ending_display(self):
+        if self.player.victory_condition is None:
+            return True
+        elif self.player.victory_condition:
+            self.screen.blit(self.victory_image, (0,0))
+            pygame.display.update()
+            return False
+        else:
+            self.screen.blit(self.fail_image, (0,0))
+            pygame.display.update()
+            return False

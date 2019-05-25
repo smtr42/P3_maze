@@ -19,6 +19,8 @@ class Player:
         self.position = self.level.player_position
         self.gatekeeper_position = self.level.get_finish_position
         self.item_position = []
+        self.victory_condition = None
+        self.item_counter = 0
 
     def move(self, direction):
         """Action to modify the coordinate of the player according
@@ -34,32 +36,35 @@ class Player:
             print("New player position is :", self.position)
 
     def pickup_item(self):
-        # self.item_position = self.level.get_item_position
-        # if self.position in self.item_position:
-        #     self.item_position.remove(self.position)
-        #     self.level.set_items_position(self.item_position)
+
         for item in self.item_obj_position.keys():
             if self.item_obj_position.get(item) == self.position:
                 del self.item_obj_position[item]
-                print(self.item_obj_position)
+                self.item_counter += 1
                 break
-
-
 
     @property
     def item_count(self):
         return self.settings.item_created - len(self.item_position)
 
     def check_victory_condition(self):
-        try:
-            if self.position == self.gatekeeper_position and self.item_count == self.settings.item_created:
-                raise cexcept.GameWinException
-            elif self.position == self.gatekeeper_position and self.item_count != self.settings.item_created:
-                print("conditions de defaite remplie")
-                raise cexcept.GameOverException
-        except cexcept.GameWinException:
-            print("You win, the guard fell asleep. And you could escape.")
-            return False
-        except cexcept.GameOverException:
-            print("you failed to stun the guard. You lack some items to do so.")
-            return False
+        if self.position == self.gatekeeper_position and self.item_counter == self.settings.item_created:
+            self.victory_condition = True
+        elif self.position == self.gatekeeper_position and self.item_counter != self.settings.item_created:
+            self.victory_condition = False
+
+    # def check_victory_condition(self):
+    #     try:
+    #         if self.position == self.gatekeeper_position and self.item_count == self.settings.item_created:
+    #             self.victory_condition = True
+    #             raise cexcept.GameWinException
+    #         elif self.position == self.gatekeeper_position and self.item_count != self.settings.item_created:
+    #             self.victory_condition = False
+    #             print("conditions de defaite remplie")
+    #             raise cexcept.GameOverException
+    #     except cexcept.GameWinException:
+    #         print("You win, the guard fell asleep. And you could escape.")
+    #         return False
+    #     except cexcept.GameOverException:
+    #         print("you failed to stun the guard. You lack some items to do so.")
+    #         return False

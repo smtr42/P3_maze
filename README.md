@@ -20,12 +20,12 @@
 
 # P3_maze
 <p align="center">
-  <a href="#key-features">Key Features</a> •
-  <a href="#how-to-use">How To Use</a> •
-  <a href="#download">Download</a> •
-  <a href="#credits">Credits</a> •
-  <a href="#related">Related</a> •
-  <a href="#license">License</a>
+  <a href="#getting-started">Getting Started</a> •
+  <a href="#prerequisites">Prerequisites</a> •
+  <a href="#built-with">Built With</a> •
+  <a href="#authors">Authors</a> •
+  <a href="#license">License</a> •
+  <a href="#acknowledgments">acknowledgments</a>
 </p>
 
 This is a game made in Python as part of a futur diploma as a Python developer from the [OpenClassrooms](https://openclassrooms.com/en) company. I put it here for evaluation.

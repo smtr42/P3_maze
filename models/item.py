@@ -26,6 +26,7 @@ class Item:
                                      linked to a position.
         """
         self.level = level
+        self.start_position = self.level.player_position
         self.path_possibles = self.level.path_possibles
         self.finish_position = self.level.get_finish_position
         self.items_coordinate = []
@@ -44,6 +45,7 @@ class Item:
         # We need to remove the gatekeeper position or an item can appear
         # at the same place
         path_possibles_for_item.remove(self.finish_position)
+        path_possibles_for_item.remove(self.start_position)
         self.items_coordinate = random.sample(path_possibles_for_item, 3)
         b = copy.deepcopy(self.items_coordinate)
         # Link the item name with its position in a dictionary

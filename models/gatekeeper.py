@@ -7,6 +7,7 @@ class GateKeeper:
     """
     The Gatekeeper class
     """
+
     def __init__(self, level):
         """
         Args:

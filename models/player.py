@@ -71,7 +71,9 @@ class Player:
         Check the victory conditions and change the boolean
         victory_condition accordingly
         """
-        if self.position == self.gatekeeper_position and self.item_counter == self.settings.item_created:
+        if self.position == self.gatekeeper_position \
+                and self.item_counter == self.settings.item_created:
             self.victory_condition = True
-        elif self.position == self.gatekeeper_position and self.item_counter != self.settings.item_created:
+        elif self.position == self.gatekeeper_position \
+                and self.item_counter != self.settings.item_created:
             self.victory_condition = False

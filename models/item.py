@@ -49,6 +49,6 @@ class Item:
         # Link the item name with its position in a dictionary
         for key in self.item_obj_position.keys():
             self.item_obj_position[key] = b.pop(0)
-        #Updating the values into level object
+        # Updating the values into level object
         self.level.set_items_position(self.items_coordinate)
         self.level.set_item_obj_position(self.item_obj_position)

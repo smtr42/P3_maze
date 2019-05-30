@@ -3,7 +3,6 @@ import pygame
 from models.level import Level
 from models.position import Position
 from models.player import Player
-from models.gatekeeper import GateKeeper
 from models.item import Item
 from controllers.keyboard import KeyboardInputs
 from views.update import Update

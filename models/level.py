@@ -67,7 +67,8 @@ class Level:
                         self._wall.append((x, y))
 
     def __repr__(self):
-        return f"Paths : {self._paths}\nPlayer : {self._player}\nFinish : {self._finish}"
+        return f"Paths : {self._paths}\nPlayer : {self._player}\n" \
+               f"Finish : {self._finish}"
 
     @property
     def player_position(self):
